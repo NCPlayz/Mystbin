@@ -13,26 +13,6 @@
 	    <link id="pagestyle" rel="stylesheet" type="text/css" href="application.css">
 		<link id="mainstyle" rel="stylesheet" type="text/css" href="solarized_dark.css">
 
-	    <script>
-			var pagestyle = localStorage.getItem('pagestyle');
-			var mainstyle = localStorage.getItem('mainstyle');
-			if (pagestyle == null) { pagestyle = 'solarized_dark.css';}
-			if (mainstyle == null) { mainstyle = 'application.css';}
-
-			document.getElementById('pagestyle').setAttribute('href', pagestyle);
-			document.getElementById('mainstyle').setAttribute('href', mainstyle);
-		</script>
-        <script>
-            function swapStyleSheet(main, hljs){
-	        document.getElementById('pagestyle').setAttribute('href', hljs);
-	        document.getElementById('mainstyle').setAttribute('href', main);
-
-	        localStorage.setItem('pagestyle', hljs);
-	        localStorage.setItem('mainstyle', main);
-            }
-        </script>
-
-
 		<meta name="robots" content="noindex,nofollow">
 
 		<script type="text/javascript">
@@ -63,30 +43,30 @@
 
 	<body>
 		<ul id="messages"></ul>
-
 		<div id="key">
-
 			<div id="box1">
 				<a href="/about.md" class="logo"></a>
 			</div>
+
 			<div id="box2">
 				<button class="save function button-picture enabled">Save</button>
 				<button class="new function button-picture enabled">New</button>
 				<button class="duplicate function button-picture">Duplicate &amp; Edit</button>
 				<button class="raw function button-picture">Just Text</button>
-				<button class="twitter function button-picture">Twitter<div id="pointer" style="display: none;"></div></button>
+				<button class="twitter function button-picture">Twitter</button>
+				<button class="retheme function button-picture enabled">Change Theme<div id="pointer" style="display: none;"></div></button>
 			</div>
+
 			<div id="box3" style="display: none;">
 				<div class="label">Twitter</div>
 				<div class="shortcut">control + shift + t</div>
 			</div>
-    <div id="dropdown">
-          <button class="dropbtn">Theme Selector</button>
-  <div class="dropdown-content">
-    <a href="#" onclick="swapStyleSheet('light.css', 'application-light.css')">Light</a>
-    <a href="#" onclick="swapStyleSheet('solarized_dark.css', 'application.css')">Colourblind</a>
-      <a href="#" onclick="swapStyleSheet('atom-dark.css', 'application-atom.css')">Atom Dark</a>
-  </div></div>
+
+			<div class="theme-selector-content">
+				<a href="#" onclick="swapStyleSheet('light.css', 'application-light.css')">Light</a>
+				<a href="#" onclick="swapStyleSheet('solarized_dark.css', 'application.css')">Colourblind</a>
+				<a href="#" onclick="swapStyleSheet('atom-dark.css', 'application-atom.css')">Atom Dark</a>
+			</div>
 		</div>
 
 		<div id="linenos">&gt;</div>
