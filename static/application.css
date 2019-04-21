@@ -1,67 +1,33 @@
-/* Dropdown Button */
-.dropbtn {
-  background-color: #255662;
-  color: #bad6de;
-  padding: 0px;
-  height: 5%;
-  width: 160px;
-  font-size: 12px;
-  font-family: monospace;
-  border: none;
-  text-align: center;
-  position: fixed;
-  bottom: 0;
-  right:0;
-  z-index: 1000;
+/* Theme dropdown content (Hidden by default) */
+.theme-selector-content {
+	display: none;
+	position: fixed;
+	bottom: 0;
+	right: 0;
+	background-color: #2b2b2b;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
 }
 
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-  bottom: 0;
-  right:0;
+/* Show when 'visible' class added */
+.theme-selector-content.visible {
+	display: block;
 }
 
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: fixed;
-  bottom: 0;
-  right:0;
-  background-color: #2b2b2b;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: #8fbcc8;
-  font-family: monospace;
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
+/* Links inside the theme dropdown */
+.theme-selector-content a {
+	color: #8fbcc8;
+	font-family: monospace;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
 /* Change color of dropdown links on hover */
-#dropdown-content a:hover {background-color: #255662;}
-
-/* Show the dropdown menu on hover */
-#dropdown:hover .dropdown-content {display: block; bottom: 5%;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-#dropdown:hover .dropbtn {background-color: #446faa;}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {background-color: #255662;}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {display: block; bottom: 5%;}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {background-color: #446faa;}
-
+.theme-selector-content a:hover {
+	background-color: #255662;
+}
 
 body {
 	background: #2b2b2b;
@@ -213,6 +179,10 @@ textarea {
 #box2 .function.twitter { background-position: -153px top; }
 #box2 .function.enabled.twitter { background-position: -153px center; }
 #box2 .function.enabled.twitter:hover { background-position: -153px bottom; }
+
+#box2 .function.retheme { background-position: -190px top; }
+#box2 .function.enabled.retheme { background-position: -190px center; }
+#box2 .function.enabled.retheme:hover { background-position: -190px bottom; }
 #box2 .button-picture{ border-width: 0; font-size: inherit; }
 
 #messages {

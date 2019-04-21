@@ -95,9 +95,11 @@ var haste = function(appName, options) {
   this.$box = $('#box');
   this.$code = $('#box code');
   this.$linenos = $('#linenos');
+  this.$themeselector = $('.theme-selector-content');
   this.options = options;
   this.configureShortcuts();
   this.configureButtons();
+  this.configureThemeButton();
   // If twitter is disabled, hide the button
   if (!options.twitter) {
     $('#box2 .twitter').hide();
@@ -121,12 +123,12 @@ haste.prototype.showMessage = function(msg, cls) {
 
 // Show the light key
 haste.prototype.lightKey = function() {
-  this.configureKey(['new', 'save']);
+  this.configureKey(['new', 'save', 'retheme']);
 };
 
 // Show the full key
 haste.prototype.fullKey = function() {
-  this.configureKey(['new', 'duplicate', 'twitter', 'raw']);
+  this.configureKey(['new', 'duplicate', 'twitter', 'raw', 'retheme']);
 };
 
 // Set the key up for certain things to be enabled
@@ -258,6 +260,43 @@ haste.prototype.lockDocument = function() {
   });
 };
 
+// Open the theme view
+haste.prototype.configureThemeButton = function() {
+  var _this = this;
+
+  this.$themeselector.mouseleave(function() {
+    if (_this.themeSetChanged === true)
+      _this.$themeselector.removeClass('visible');
+  });
+
+  this.swapStyleSheet(localStorage.getItem('pagestyle'), localStorage.getItem('mainstyle'));
+  this.themeSetChanged = false;
+
+  window.swapStyleSheet = function(pagestyle, mainstyle) {
+    _this.swapStyleSheet(pagestyle, mainstyle);
+  }
+};
+
+haste.prototype.swapStyleSheet = function(pagestyle, mainstyle) {
+  if (pagestyle == null)
+    pagestyle = 'solarized_dark.css';
+  if (mainstyle == null)
+    mainstyle = 'application.css';
+
+  $('#pagestyle').attr('href', pagestyle);
+  $('#mainstyle').attr('href', mainstyle);
+
+  localStorage.setItem('pagestyle', pagestyle);
+  localStorage.setItem('mainstyle', mainstyle);
+
+  this.themeSetChanged = true;
+}
+
+haste.prototype.showThemes = function() {
+  this.themeSetChanged = false;
+  this.$themeselector.addClass('visible');
+};
+
 haste.prototype.configureButtons = function() {
   var _this = this;
   this.buttons = [
@@ -316,6 +355,17 @@ haste.prototype.configureButtons = function() {
       shortcutDescription: 'control + shift + t',
       action: function() {
         window.open('https://twitter.com/share?url=' + encodeURI(window.location.href));
+      }
+    },
+    {
+      $where: $('#box2 .retheme'),
+      label: 'Change Theme',
+      shortcut: function(evt) {
+        return _this.options.twitter && _this.doc.locked && evt.shiftKey && evt.ctrlKey && evt.keyCode == 89;
+      },
+      shortcutDescription: 'control + shift + y',
+      action: function() {
+        _this.showThemes();
       }
     }
   ];
