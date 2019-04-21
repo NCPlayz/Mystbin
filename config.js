@@ -5,7 +5,7 @@
 
   "keyLength": 10,
 
-  "maxLength": 400000,
+  "maxLength": 1000000,
 
   "staticMaxAge": 86400,
 
@@ -26,17 +26,18 @@
   "rateLimits": {
     "categories": {
       "normal": {
-        "totalRequests": 500,
+        "totalRequests": 1000,
         "every": 60000
       }
     }
   },
 
   "storage": {
-    "type": "memcached",
-    "host": "127.0.0.1",
-    "port": 11211,
-    "expire": 2592000
+    "type": "redis",
+    "host": "localhost",
+    "port": 6379,
+    "db": 2,
+    "expire": 15552000
   },
 
   "documents": {
